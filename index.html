@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <input type="text" v-model="iptvalue">
+        <button @click="btnclick">提交</button>
+        <!-- <ul>
+            <li v-for="item in list">{{item}}</li>
+        </ul> -->
+        <tode-list v-bind:content="item" v-for="item in list"></tode-list>
+    </div>
+    <script>
+    // 全局
+    //    Vue.component('TodeList',{
+    //        props:["content"],
+    //        template:'<li>{{this.content}}</li>'
+    //    })
+    // 局部
+        var TodeList={
+            props:["content"],
+           template:'<li>{{this.content}}</li>'
+        }
+
+        var app=new Vue({
+            el:"#root",
+            components:{
+                TodeList:TodeList
+            },
+            data:{
+                list:[],
+                iptvalue:''
+            },
+            methods:{
+                btnclick:function(){
+                    this.list.push(this.iptvalue);
+                    this.iptvalue='';
+                }
+            }
+        })
+    </script>
+</body>
+</html>
